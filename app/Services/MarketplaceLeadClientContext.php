@@ -99,7 +99,8 @@ final class MarketplaceLeadClientContext
     private static function applyIpGeoLookup(string $ip, array &$context): void
     {
         try {
-            $response = Http::timeout(2)
+            // Reduced timeout to 1 second to prevent holding up the request
+            $response = Http::timeout(1)
                 ->acceptJson()
                 ->get('https://ipapi.co/'.$ip.'/json/');
 
