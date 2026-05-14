@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'dataflair/publisher-marketplace',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '49317ed9bb462405e47ae4d45ac1f9c2df260f27',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -35,9 +35,9 @@
             ),
         ),
         'dataflair/publisher-marketplace' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '49317ed9bb462405e47ae4d45ac1f9c2df260f27',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -874,9 +874,9 @@
             'dev_requirement' => false,
         ),
         'resend/resend-php' => array(
-            'pretty_version' => 'v0.16.0',
-            'version' => '0.16.0.0',
-            'reference' => '6e9be898c9e0035a5da3c2904e86d0b12999c2fc',
+            'pretty_version' => 'v1.3.0',
+            'version' => '1.3.0.0',
+            'reference' => '87d29d98271a0ab1c09cdbee102daa2f9b3419db',
             'type' => 'library',
             'install_path' => __DIR__ . '/../resend/resend-php',
             'aliases' => array(),

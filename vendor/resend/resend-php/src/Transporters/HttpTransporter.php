@@ -41,10 +41,27 @@ class HttpTransporter implements Transporter
         $request = $payload->toRequest($this->baseUri, $this->headers);
 
         $response = $this->sendRequest(fn () => $this->client->sendRequest($request));
-
         $contents = $response->getBody()->getContents();
+        $contentType = $response->getHeaderLine('Content-Type');
 
         $this->throwIfJsonError($response, $contents);
+
+        // Only decode as JSON if appropriate
+        if (! str_contains($contentType, 'application/json')) {
+            throw new UnserializableResponse(
+                new JsonException(
+                    "Unexpected Content-Type '{$contentType}'. Response body: " . substr($contents, 0, 200)
+                ),
+                $contents
+            );
+        }
+
+        if (trim($contents) === '') {
+            throw new UnserializableResponse(
+                new JsonException('Empty response body'),
+                $contents
+            );
+        }
 
         try {
             $data = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
@@ -90,12 +107,18 @@ class HttpTransporter implements Transporter
 
             if (
                 isset($response['error']) ||
-                $this->isResendError($response['name'])
+                (isset($response['name']) && $this->isResendError($response['name']))
             ) {
-                throw new ErrorException($response['error'] ?? $response);
+                $error = $response['error'] ?? $response;
+
+                if (! is_array($error)) {
+                    $error = ['message' => is_string($error) ? $error : json_encode($error)];
+                }
+
+                throw new ErrorException($error);
             }
         } catch (JsonException $jsonException) {
-            throw new UnserializableResponse($jsonException);
+            throw new UnserializableResponse($jsonException, $contents);
         }
     }
 
@@ -106,10 +129,21 @@ class HttpTransporter implements Transporter
     {
         $errors = [
             'application_error',
+            'concurrent_idempotent_requests',
             'daily_quota_exceeded',
+            'internal_server_error',
+            'invalid_access',
+            'invalid_api_key',
             'invalid_attachment',
+            'invalid_from_address',
+            'invalid_idempotency_key',
+            'invalid_idempotent_request',
+            'invalid_parameter',
+            'invalid_region',
+            'method_not_allowed',
             'missing_api_key',
             'missing_required_field',
+            'monthly_quota_exceeded',
             'not_found',
             'rate_limit_exceeded',
             'restricted_api_key',

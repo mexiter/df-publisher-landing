@@ -11,11 +11,19 @@ use Resend\Service\ServiceFactory;
  *
  * @property Service\ApiKey $apiKeys
  * @property Service\Audience $audiences
+ * @property Service\Automation $automations
  * @property Service\Batch $batch
  * @property Service\Broadcast $broadcasts
  * @property Service\Contact $contacts
+ * @property Service\ContactProperty $contactProperties
  * @property Service\Domain $domains
  * @property Service\Email $emails
+ * @property Service\Event $events
+ * @property Service\Log $logs
+ * @property Service\Segment $segments
+ * @property Service\Template $templates
+ * @property Service\Topic $topics
+ * @property Service\Webhook $webhooks
  */
 class Client implements ClientContract
 {
@@ -31,17 +39,6 @@ class Client implements ClientContract
         private readonly Transporter $transporter
     ) {
         //
-    }
-
-    /**
-     * Send an email with the given parameters.
-     *
-     * @deprecated
-     * @see https://resend.com/docs/api-reference/emails/send-email#body-parameters
-     */
-    public function sendEmail(array $parameters): Email
-    {
-        return $this->emails->send($parameters);
     }
 
     /**

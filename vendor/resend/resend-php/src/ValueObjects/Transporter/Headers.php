@@ -28,6 +28,14 @@ final class Headers
         ]);
     }
 
+    public function with(string $header, string $value): self
+    {
+        return new self([
+            ...$this->headers,
+            $header => $value,
+        ]);
+    }
+
     /**
      * Create a new Headers value object with the given user agent and existing headers.
      */
@@ -47,6 +55,28 @@ final class Headers
         return new self([
             ...$this->headers,
             'Content-Type' => $contentType->value . $suffix,
+        ]);
+    }
+
+    /**
+     * Create a new Headers value object with the given idempotency key and existing headers.
+     */
+    public function withIdempotencyKey(string $key): self
+    {
+        return new self([
+            ...$this->headers,
+            'Idempotency-Key' => $key,
+        ]);
+    }
+
+    /**
+     * Merge an existing set of headers with the current set of headers.
+     */
+    public function merge(Headers $headersToMerge): self
+    {
+        return new self([
+            ...$this->headers,
+            ...$headersToMerge->toArray(),
         ]);
     }
 

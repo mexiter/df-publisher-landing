@@ -14,11 +14,19 @@ class ServiceFactory
     private static array $classMap = [
         'apiKeys' => ApiKey::class,
         'audiences' => Audience::class,
+        'automations' => Automation::class,
         'batch' => Batch::class,
         'broadcasts' => Broadcast::class,
+        'contactProperties' => ContactProperty::class,
         'contacts' => Contact::class,
         'domains' => Domain::class,
         'emails' => Email::class,
+        'events' => Event::class,
+        'logs' => Log::class,
+        'segments' => Segment::class,
+        'templates' => Template::class,
+        'topics' => Topic::class,
+        'webhooks' => Webhook::class,
     ];
 
     /**

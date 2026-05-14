@@ -3,6 +3,7 @@
 namespace Resend\ValueObjects\Transporter;
 
 use GuzzleHttp\Psr7\Request;
+use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Resend;
 use Resend\Enums\Transporter\ContentType;
@@ -18,7 +19,8 @@ final class Payload
         private readonly ContentType $contentType,
         private readonly Method $method,
         private readonly ResourceUri $uri,
-        private readonly array $parameters = []
+        private readonly array $parameters = [],
+        private ?Headers $headers = null
     ) {
         //
     }
@@ -26,11 +28,29 @@ final class Payload
     /**
      * Create a new Transporter Payload instance.
      */
-    public static function list(string $resource): self
+    public static function list(string $resource, array $options = []): self
     {
         $contentType = ContentType::JSON;
         $method = Method::GET;
-        $uri = ResourceUri::list($resource);
+        $searchParams = [];
+
+        if (array_key_exists('limit', $options)) {
+            $searchParams['limit'] = $options['limit'];
+        }
+
+        if (array_key_exists('after', $options)) {
+            $searchParams['after'] = $options['after'];
+        }
+
+        if (array_key_exists('before', $options)) {
+            $searchParams['before'] = $options['before'];
+        }
+
+        if (array_key_exists('status', $options)) {
+            $searchParams['status'] = $options['status'];
+        }
+
+        $uri = ResourceUri::list(! empty($searchParams) ? $resource . '?' . http_build_query($searchParams) : $resource);
 
         return new self($contentType, $method, $uri);
     }
@@ -40,6 +60,10 @@ final class Payload
      */
     public static function get(string $resource, string $id): self
     {
+        if (trim($id) === '') {
+            throw new InvalidArgumentException("The {$resource} ID must be a non-empty string.");
+        }
+
         $contentType = ContentType::JSON;
         $method = Method::GET;
         $uri = ResourceUri::get($resource, $id);
@@ -50,13 +74,18 @@ final class Payload
     /**
      * Create a new Transporter Payload instance.
      */
-    public static function create(string $resource, array $parameters): self
+    public static function create(string $resource, array $parameters, array $options = []): self
     {
         $contentType = ContentType::JSON;
         $method = Method::POST;
         $uri = ResourceUri::create($resource);
+        $headers = new Headers([]);
 
-        return new self($contentType, $method, $uri, $parameters);
+        if (array_key_exists('idempotency_key', $options)) {
+            $headers = $headers->withIdempotencyKey($options['idempotency_key']);
+        }
+
+        return new self($contentType, $method, $uri, $parameters, $headers);
     }
 
     /**
@@ -108,6 +137,40 @@ final class Payload
     }
 
     /**
+     * Create a new Transporter Payload instance.
+     */
+    public static function publish(string $resource, string $id): self
+    {
+        $contentType = ContentType::JSON;
+        $method = Method::POST;
+        $uri = ResourceUri::withAction($resource, $id, 'publish');
+
+        return new self($contentType, $method, $uri);
+    }
+
+    /**
+     * Create a new Transporter Payload instance.
+     */
+    public static function duplicate(string $resource, string $id): self
+    {
+        $contentType = ContentType::JSON;
+        $method = Method::POST;
+        $uri = ResourceUri::withAction($resource, $id, 'duplicate');
+
+        return new self($contentType, $method, $uri);
+    }
+
+    /**
+     * Add the given header and value to the payload.
+     */
+    public function withHeader(string $header, string $value): self
+    {
+        $this->headers = $this->headers->with($header, $value);
+
+        return $this;
+    }
+
+    /**
      * Creates a new Psr 7 Request instance.
      */
     public function toRequest(BaseUri $baseUri, Headers $headers): RequestInterface
@@ -116,7 +179,12 @@ final class Payload
 
         $uri = $baseUri->toString() . $this->uri->toString();
 
-        $headers = $headers->withUserAgent('resend-php', Resend::VERSION)
+        $mergedHeaders = $headers;
+        if ($this->headers !== null) {
+            $mergedHeaders = $headers->merge($this->headers);
+        }
+
+        $mergedHeaders = $mergedHeaders->withUserAgent('resend-php', Resend::VERSION)
             ->withContentType($this->contentType);
 
         if ($this->method === Method::POST || $this->method === Method::PATCH || $this->method === Method::PUT) {
@@ -126,6 +194,6 @@ final class Payload
             );
         }
 
-        return new Request($this->method->value, $uri, $headers->toArray(), $body);
+        return new Request($this->method->value, $uri, $mergedHeaders->toArray(), $body);
     }
 }
