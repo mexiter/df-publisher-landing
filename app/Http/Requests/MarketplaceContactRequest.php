@@ -17,7 +17,7 @@ class MarketplaceContactRequest extends FormRequest
         return [
             'role' => ['required', 'string', Rule::in(['advertiser', 'publisher', 'agency', 'other'])],
             'name' => ['required', 'string', 'max:120'],
-            'email' => ['required', 'max:255', app()->environment('production') ? 'email:rfc,dns' : 'email:rfc'],
+            'email' => ['required', 'max:255', 'email:rfc'],
             'company' => ['nullable', 'string', 'max:160'],
             'website' => ['nullable', 'url', 'max:255'],
             'message' => ['required', 'string', 'min:10', 'max:3000'],
