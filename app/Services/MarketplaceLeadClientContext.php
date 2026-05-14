@@ -29,12 +29,21 @@ final class MarketplaceLeadClientContext
             'longitude' => null,
         ];
 
-        if ($userAgent !== '') {
-            self::applyUserAgent($userAgent, $context);
+        return $context;
+    }
+
+    /**
+     * @param array<string, mixed> $context
+     * @return array<string, mixed>
+     */
+    public static function enrich(array $context): array
+    {
+        if (!empty($context['user_agent'])) {
+            self::applyUserAgent($context['user_agent'], $context);
         }
 
-        if (config('marketplace.geo_lookup') === true && self::isPublicIp($ip)) {
-            self::applyIpGeoLookup((string) $ip, $context);
+        if (config('marketplace.geo_lookup') === true && self::isPublicIp($context['ip_address'] ?? null)) {
+            self::applyIpGeoLookup((string) $context['ip_address'], $context);
         }
 
         return $context;

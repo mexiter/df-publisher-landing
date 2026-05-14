@@ -14,16 +14,23 @@ class MarketplaceContactController extends Controller
 {
     public function __invoke(MarketplaceContactRequest $request): JsonResponse
     {
+        $initialContext = MarketplaceLeadClientContext::for($request);
+
         $lead = MarketplaceLead::create([
             ...$request->validated(),
             'type' => 'contact',
-            ...MarketplaceLeadClientContext::for($request),
+            ...$initialContext,
             'metadata' => [
                 'source' => 'marketplace_contact',
             ],
         ]);
 
-        dispatch(function () use ($lead) {
+        dispatch(function () use ($lead, $initialContext) {
+            // 1. Enrich with slow GeoIP and Device parsing
+            $enrichedContext = MarketplaceLeadClientContext::enrich($initialContext);
+            $lead->update($enrichedContext);
+
+            // 2. Send emails
             try {
                 $this->notifyTeam($lead);
             } catch (\Throwable $e) {
