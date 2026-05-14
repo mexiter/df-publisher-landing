@@ -23,8 +23,17 @@ class MarketplaceWaitlistController extends Controller
             ],
         ]);
 
-        $this->notifyTeam($lead);
-        $this->sendConfirmation($lead);
+        try {
+            $this->notifyTeam($lead);
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Failed to notify team: ' . $e->getMessage());
+        }
+
+        try {
+            $this->sendConfirmation($lead);
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error('Failed to send confirmation: ' . $e->getMessage());
+        }
 
         return response()->json([
             'successTitle' => 'Thank you for joining our waitlist.',
