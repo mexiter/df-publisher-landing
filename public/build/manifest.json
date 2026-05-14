@@ -1,0 +1,158 @@
+{
+  "_ComparisonItem-Cc2Ex-rn.js": {
+    "file": "assets/ComparisonItem-Cc2Ex-rn.js",
+    "name": "ComparisonItem",
+    "imports": [
+      "_rolldown-runtime-WNZMJCWm.js",
+      "resources/js/app.ts"
+    ]
+  },
+  "_ConfirmationModal-B22l8nES.js": {
+    "file": "assets/ConfirmationModal-B22l8nES.js",
+    "name": "ConfirmationModal",
+    "imports": [
+      "_rolldown-runtime-WNZMJCWm.js",
+      "resources/js/app.ts"
+    ]
+  },
+  "_FeatureCard-CISVgZcc.js": {
+    "file": "assets/FeatureCard-CISVgZcc.js",
+    "name": "FeatureCard",
+    "imports": [
+      "_rolldown-runtime-WNZMJCWm.js",
+      "resources/js/app.ts"
+    ]
+  },
+  "_InventoryRow-BVX8JfNY.js": {
+    "file": "assets/InventoryRow-BVX8JfNY.js",
+    "name": "InventoryRow",
+    "imports": [
+      "_rolldown-runtime-WNZMJCWm.js",
+      "resources/js/app.ts"
+    ]
+  },
+  "_Metric-DOeK8BdS.css": {
+    "file": "assets/Metric-DOeK8BdS.css",
+    "src": "_Metric-DOeK8BdS.css"
+  },
+  "_Metric-DqqTonLz.js": {
+    "file": "assets/Metric-DqqTonLz.js",
+    "name": "Metric",
+    "imports": [
+      "_rolldown-runtime-WNZMJCWm.js",
+      "resources/js/app.ts"
+    ],
+    "css": [
+      "assets/Metric-DOeK8BdS.css"
+    ]
+  },
+  "_PublicLayout-BqE7xp99.js": {
+    "file": "assets/PublicLayout-BqE7xp99.js",
+    "name": "PublicLayout",
+    "imports": [
+      "_rolldown-runtime-WNZMJCWm.js",
+      "resources/js/app.ts"
+    ],
+    "assets": [
+      "assets/dataflair-logo-Dz9Tgp4N.svg"
+    ]
+  },
+  "_rolldown-runtime-WNZMJCWm.js": {
+    "file": "assets/rolldown-runtime-WNZMJCWm.js",
+    "name": "rolldown-runtime"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CzCy-spm.css",
+    "name": "app",
+    "names": [
+      "app.css"
+    ],
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/images/dataflair-logo.svg": {
+    "file": "assets/dataflair-logo-Dz9Tgp4N.svg",
+    "src": "resources/images/dataflair-logo.svg"
+  },
+  "resources/js/app.ts": {
+    "file": "assets/app-CjR_pB8b.js",
+    "name": "app",
+    "src": "resources/js/app.ts",
+    "isEntry": true,
+    "dynamicImports": [
+      "_ComparisonItem-Cc2Ex-rn.js",
+      "_ConfirmationModal-B22l8nES.js",
+      "_FeatureCard-CISVgZcc.js",
+      "_InventoryRow-BVX8JfNY.js",
+      "_Metric-DqqTonLz.js",
+      "_PublicLayout-BqE7xp99.js",
+      "resources/js/pages/Marketplace/Contact.vue",
+      "resources/js/pages/Marketplace/Home.vue",
+      "resources/js/pages/Marketplace/PrivacyPolicy.vue",
+      "resources/js/pages/Marketplace/PublisherTerms.vue",
+      "resources/js/pages/Marketplace/Terms.vue"
+    ],
+    "css": [
+      "assets/app-CzCy-spm.css"
+    ]
+  },
+  "resources/js/pages/Marketplace/Contact.vue": {
+    "file": "assets/Contact-Cg6PQ5Da.js",
+    "name": "Contact",
+    "src": "resources/js/pages/Marketplace/Contact.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.ts",
+      "_PublicLayout-BqE7xp99.js",
+      "_ConfirmationModal-B22l8nES.js"
+    ]
+  },
+  "resources/js/pages/Marketplace/Home.vue": {
+    "file": "assets/Home-lroc64XB.js",
+    "name": "Home",
+    "src": "resources/js/pages/Marketplace/Home.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_Metric-DqqTonLz.js",
+      "resources/js/app.ts",
+      "_PublicLayout-BqE7xp99.js",
+      "_ComparisonItem-Cc2Ex-rn.js",
+      "_ConfirmationModal-B22l8nES.js",
+      "_FeatureCard-CISVgZcc.js",
+      "_InventoryRow-BVX8JfNY.js"
+    ],
+    "css": [
+      "assets/Home-C1t4adth.css"
+    ]
+  },
+  "resources/js/pages/Marketplace/PrivacyPolicy.vue": {
+    "file": "assets/PrivacyPolicy-5t7LRHqD.js",
+    "name": "PrivacyPolicy",
+    "src": "resources/js/pages/Marketplace/PrivacyPolicy.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.ts",
+      "_PublicLayout-BqE7xp99.js"
+    ]
+  },
+  "resources/js/pages/Marketplace/PublisherTerms.vue": {
+    "file": "assets/PublisherTerms-Db6uGoQA.js",
+    "name": "PublisherTerms",
+    "src": "resources/js/pages/Marketplace/PublisherTerms.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.ts",
+      "_PublicLayout-BqE7xp99.js"
+    ]
+  },
+  "resources/js/pages/Marketplace/Terms.vue": {
+    "file": "assets/Terms-C48ZjBjr.js",
+    "name": "Terms",
+    "src": "resources/js/pages/Marketplace/Terms.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.ts",
+      "_PublicLayout-BqE7xp99.js"
+    ]
+  }
+}
