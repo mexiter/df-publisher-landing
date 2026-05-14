@@ -25,13 +25,13 @@ class MarketplaceWaitlistController extends Controller
 
         try {
             $this->notifyTeam($lead);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Illuminate\Support\Facades\Log::error('Failed to notify team: ' . $e->getMessage());
         }
 
         try {
             $this->sendConfirmation($lead);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Illuminate\Support\Facades\Log::error('Failed to send confirmation: ' . $e->getMessage());
         }
 
