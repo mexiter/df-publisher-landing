@@ -39,12 +39,12 @@ class ComposerStaticInit176a9d6d516c341698b873578e9add3f
         '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '0754989a10baadda533479884b399278' => __DIR__ . '/..' . '/resend/resend-php/src/Resend.php',
         '98caa11a197f6516a8e48aa4abb5ccc6' => __DIR__ . '/..' . '/inertiajs/inertia-laravel/helpers.php',
         'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
-        '0754989a10baadda533479884b399278' => __DIR__ . '/..' . '/resend/resend-php/src/Resend.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -97,6 +97,7 @@ class ComposerStaticInit176a9d6d516c341698b873578e9add3f
         ),
         'R' =>
         array (
+            'Resend\\Laravel\\' => 15,
             'Resend\\' => 7,
             'Ramsey\\Uuid\\' => 12,
             'Ramsey\\Collection\\' => 18,
@@ -327,6 +328,10 @@ class ComposerStaticInit176a9d6d516c341698b873578e9add3f
         'Symfony\\Component\\Clock\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/clock',
+        ),
+        'Resend\\Laravel\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/resend/resend-laravel/src',
         ),
         'Resend\\' =>
         array (
@@ -5884,6 +5889,28 @@ class ComposerStaticInit176a9d6d516c341698b873578e9add3f
         'Resend\\Exceptions\\TransporterException' => __DIR__ . '/..' . '/resend/resend-php/src/Exceptions/TransporterException.php',
         'Resend\\Exceptions\\UnserializableResponse' => __DIR__ . '/..' . '/resend/resend-php/src/Exceptions/UnserializableResponse.php',
         'Resend\\Exceptions\\WebhookSignatureVerificationException' => __DIR__ . '/..' . '/resend/resend-php/src/Exceptions/WebhookSignatureVerificationException.php',
+        'Resend\\Laravel\\Events\\ContactCreated' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/ContactCreated.php',
+        'Resend\\Laravel\\Events\\ContactDeleted' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/ContactDeleted.php',
+        'Resend\\Laravel\\Events\\ContactUpdated' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/ContactUpdated.php',
+        'Resend\\Laravel\\Events\\DomainCreated' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/DomainCreated.php',
+        'Resend\\Laravel\\Events\\DomainDeleted' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/DomainDeleted.php',
+        'Resend\\Laravel\\Events\\DomainUpdated' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/DomainUpdated.php',
+        'Resend\\Laravel\\Events\\EmailBounced' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/EmailBounced.php',
+        'Resend\\Laravel\\Events\\EmailClicked' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/EmailClicked.php',
+        'Resend\\Laravel\\Events\\EmailComplained' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/EmailComplained.php',
+        'Resend\\Laravel\\Events\\EmailDelivered' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/EmailDelivered.php',
+        'Resend\\Laravel\\Events\\EmailDeliveryDelayed' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/EmailDeliveryDelayed.php',
+        'Resend\\Laravel\\Events\\EmailFailed' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/EmailFailed.php',
+        'Resend\\Laravel\\Events\\EmailOpened' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/EmailOpened.php',
+        'Resend\\Laravel\\Events\\EmailReceived' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/EmailReceived.php',
+        'Resend\\Laravel\\Events\\EmailSent' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/EmailSent.php',
+        'Resend\\Laravel\\Events\\EmailSuppressed' => __DIR__ . '/..' . '/resend/resend-laravel/src/Events/EmailSuppressed.php',
+        'Resend\\Laravel\\Exceptions\\ApiKeyIsMissing' => __DIR__ . '/..' . '/resend/resend-laravel/src/Exceptions/ApiKeyIsMissing.php',
+        'Resend\\Laravel\\Facades\\Resend' => __DIR__ . '/..' . '/resend/resend-laravel/src/Facades/Resend.php',
+        'Resend\\Laravel\\Http\\Controllers\\WebhookController' => __DIR__ . '/..' . '/resend/resend-laravel/src/Http/Controllers/WebhookController.php',
+        'Resend\\Laravel\\Http\\Middleware\\VerifyWebhookSignature' => __DIR__ . '/..' . '/resend/resend-laravel/src/Http/Middleware/VerifyWebhookSignature.php',
+        'Resend\\Laravel\\ResendServiceProvider' => __DIR__ . '/..' . '/resend/resend-laravel/src/ResendServiceProvider.php',
+        'Resend\\Laravel\\Transport\\ResendTransportFactory' => __DIR__ . '/..' . '/resend/resend-laravel/src/Transport/ResendTransportFactory.php',
         'Resend\\Log' => __DIR__ . '/..' . '/resend/resend-php/src/Log.php',
         'Resend\\Resource' => __DIR__ . '/..' . '/resend/resend-php/src/Resource.php',
         'Resend\\Segment' => __DIR__ . '/..' . '/resend/resend-php/src/Segment.php',
